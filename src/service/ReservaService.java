@@ -16,6 +16,9 @@ public class ReservaService {
              return false;
             }
         }
+        if(novaReserva.getConvidados() > novaReserva.getLocal().getCapacidade()){
+            System.out.println("Convidados excedem capacidade do local");
+        }
         reservas.add(novaReserva);
         System.out.println("Reserva Criada");
         for(Reserva reserva : reservas){

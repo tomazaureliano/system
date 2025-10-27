@@ -11,11 +11,12 @@ public class Reserva {
     private LocalDateTime inicio;
     private LocalDateTime fim;
     private StatusReserva status;
+    int convidados;
     private long valor;
     public enum StatusReserva {
     ATIVA, CANCELADA, FINALIZADA
     }
-    public Reserva(int idReserva, Cliente cliente, StatusReserva status, LocalEsportivo local, LocalDateTime inicio, LocalDateTime fim, List<Equipamento> equipamentos) {
+    public Reserva(int idReserva, int convidados, Cliente cliente, StatusReserva status, LocalEsportivo local, LocalDateTime inicio, LocalDateTime fim, List<Equipamento> equipamentos) {
         this.idReserva = idReserva;
         this.cliente = cliente;
         this.status = status;
@@ -24,6 +25,7 @@ public class Reserva {
         this.fim = fim;
         this.equipamentos = equipamentos;
         this.status = StatusReserva.ATIVA;
+        this.convidados = convidados;
         for(Equipamento equipamento : equipamentos){
             valor += (long) equipamento.getValor();
         }
@@ -86,5 +88,13 @@ public class Reserva {
 
     public void setValor(long valor) {
         this.valor = valor;
+    }
+
+    public int getConvidados() {
+        return convidados;
+    }
+
+    public void setConvidados(int convidados) {
+        this.convidados = convidados;
     }
 }

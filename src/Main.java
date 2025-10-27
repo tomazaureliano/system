@@ -20,12 +20,12 @@ public class Main {
         LocalEsportivo campo = new LocalEsportivo("campinho", "volei", 30, 200.0, LocalEsportivo.Condicao.DISPONIVEL, equipamentos);
         ReservaService service = new ReservaService();
 
-        Reserva reserva1 = new Reserva(1, cliente, Reserva.StatusReserva.ATIVA, quadra, LocalDateTime.now(), LocalDateTime.now().plusDays(1), equipamentos);
-        Reserva reserva2 = new Reserva(2, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now().plusDays(1), LocalDateTime.now().plusDays(2), equipamentos);
+        Reserva reserva1 = new Reserva(1,30, cliente, Reserva.StatusReserva.ATIVA, quadra, LocalDateTime.now(), LocalDateTime.now().plusDays(1), equipamentos);
+        Reserva reserva2 = new Reserva(2,30, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now(), LocalDateTime.now().plusDays(2), equipamentos);
         service.criarReserva(reserva2);
         service.criarReserva(reserva1);
-        service.cancelarReserva(reserva1);
-        service.cancelarReserva(reserva2);
+
+        //até aqui eu testei a criação de reservas e o cancelamento
 
     }
 }
