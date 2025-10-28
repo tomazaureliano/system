@@ -10,8 +10,8 @@ public class RelatorioService {
     public RelatorioService(ReservaService reservaService) {
         this.reservaService = reservaService;
     }
-    public List<Reserva> listarReservas(Reserva reserva) {
-        List<Reserva> reservas = getReservas();
+    public List<Reserva> listarReservas() {
+        List<Reserva> reservas = reservaService.getReservas();
         System.out.println("Reservas listado");
         for(Reserva reserva : reservas){
             System.out.println(reserva.getIdReserva());
