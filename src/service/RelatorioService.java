@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RelatorioService {
-
-
-
-
+    private ReservaService reservaService;
+    public RelatorioService(ReservaService reservaService) {
+        this.reservaService = reservaService;
+    }
     public List<Reserva> listarReservas(Reserva reserva) {
         List<Reserva> reservas = getReservas();
         System.out.println("Reservas listado");

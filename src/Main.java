@@ -27,7 +27,7 @@ public class Main {
         equipamentosReserva2.put(raquete, 5);  // Tentando reservar 6 raquetes (erro: só há 5 disponíveis)
 
         ReservaService service = new ReservaService();
-        RelatorioService relatorioService = new RelatorioService();
+        RelatorioService relatorioService = new RelatorioService(reservaService);
 
         Reserva reserva1 = new Reserva(1,20, cliente, Reserva.StatusReserva.ATIVA, quadra, LocalDateTime.now(), LocalDateTime.now().plusDays(1), equipamentosReserva1);
         Reserva reserva2 = new Reserva(2,30, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now(), LocalDateTime.now().plusDays(2), equipamentosReserva2);
