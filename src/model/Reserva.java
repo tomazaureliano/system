@@ -2,11 +2,12 @@ package model;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Reserva {
     private int idReserva;
     private Cliente cliente;
-    private List<Equipamento> equipamentos;
+    private Map<Equipamento, Integer> equipamentos;
     private LocalEsportivo local;
     private LocalDateTime inicio;
     private LocalDateTime fim;
@@ -16,7 +17,7 @@ public class Reserva {
     public enum StatusReserva {
     ATIVA, CANCELADA, FINALIZADA
     }
-    public Reserva(int idReserva, int convidados, Cliente cliente, StatusReserva status, LocalEsportivo local, LocalDateTime inicio, LocalDateTime fim, List<Equipamento> equipamentos) {
+    public Reserva(int idReserva, int convidados, Cliente cliente, StatusReserva status, LocalEsportivo local, LocalDateTime inicio, LocalDateTime fim, Map<Equipamento, Integer> equipamentos) {
         this.idReserva = idReserva;
         this.cliente = cliente;
         this.status = status;
@@ -26,7 +27,9 @@ public class Reserva {
         this.equipamentos = equipamentos;
         this.status = StatusReserva.ATIVA;
         this.convidados = convidados;
-        for(Equipamento equipamento : equipamentos){
+        for(Map.Entry<Equipamento, Integer> entry : equipamentos.entrySet()){
+            Equipamento equipamento = entry.getKey();
+            int quantidade = entry.getValue();
             valor += (long) equipamento.getValor();
         }
         valor += (long) local.getValor();
@@ -37,12 +40,14 @@ public class Reserva {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    public List<Equipamento> getEquipamentos() {
+    public Map<Equipamento, Integer> getEquipamentos() {
         return equipamentos;
     }
-    public void setEquipamentos(List<Equipamento> equipamentos) {
+    public void setEquipamentos(Map<Equipamento, Integer> equipamentos) {
         this.equipamentos = equipamentos;
+
     }
+
     public LocalEsportivo getLocal() {
         return local;
     }
