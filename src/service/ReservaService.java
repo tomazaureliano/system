@@ -57,8 +57,8 @@ public class ReservaService {
                                       LocalDateTime inicio2, LocalDateTime fim2) {
         return (inicio1.isBefore(fim2) && fim1.isAfter(inicio2));
     }
-    public List<Reserva> listarReservas(){
+
+    public List<Reserva> getReservas() {
         return reservas;
     }
-
 }

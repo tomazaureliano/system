@@ -17,15 +17,17 @@ public class Main {
         Cliente cliente2 = new Cliente("carlos", "4567", "caarlos@gmail.com", "45967");
         LocalEsportivo quadra = new LocalEsportivo("Quadra A", "Futebol", 20, 150.0, LocalEsportivo.Condicao.DISPONIVEL, null);
         LocalEsportivo campo = new LocalEsportivo("campinho", "volei", 30, 200.0, LocalEsportivo.Condicao.DISPONIVEL, null);
+        List<Reserva> reservas = new ArrayList<>();
         Map<Equipamento, Integer> equipamentosReserva1 = new HashMap<>();
         equipamentosReserva1.put(bola, 2);     // Reservando 2 bolas
-        equipamentosReserva1.put(raquete, 1);  // Reservando 1 raquete
+        // Reservando 1 raquete
 
         Map<Equipamento, Integer> equipamentosReserva2 = new HashMap<>();
         equipamentosReserva2.put(bola, 2);     // Tentando reservar 9 bolas (funciona)
         equipamentosReserva2.put(raquete, 5);  // Tentando reservar 6 raquetes (erro: só há 5 disponíveis)
 
         ReservaService service = new ReservaService();
+        RelatorioService relatorioService = new RelatorioService();
 
         Reserva reserva1 = new Reserva(1,20, cliente, Reserva.StatusReserva.ATIVA, quadra, LocalDateTime.now(), LocalDateTime.now().plusDays(1), equipamentosReserva1);
         Reserva reserva2 = new Reserva(2,30, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now(), LocalDateTime.now().plusDays(2), equipamentosReserva2);
@@ -33,7 +35,7 @@ public class Main {
         service.criarReserva(reserva1);
         Reserva reserva3 = new Reserva(4, 10, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now().plusDays(3), LocalDateTime.now().plusDays(4), null);
         service.criarReserva(reserva3);
-
+        relatorioService.listarReservas();
         //até aqui eu testei a criação de reservas e o cancelamento
         //implementei o requerimento de reservas de equipamentos dando erro se não tiver quantidade
         //implementei a reserva de locais sem equipamentos

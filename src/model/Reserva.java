@@ -1,9 +1,7 @@
 package model;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 public class Reserva {
     private int idReserva;
@@ -47,6 +45,12 @@ public class Reserva {
     }
     public Map<Equipamento, Integer> getEquipamentos() {
         return equipamentos;
+    }
+    public String getNomeEquipamentos() {
+        for (Equipamento e : equipamentos.keySet()) {
+            System.out.println(e.getNome());
+        }
+        return "";
     }
     public void setEquipamentos(Map<Equipamento, Integer> equipamentos) {
         this.equipamentos = equipamentos;
