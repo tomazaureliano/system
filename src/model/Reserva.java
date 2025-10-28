@@ -1,6 +1,7 @@
 package model;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,15 +25,19 @@ public class Reserva {
         this.local = local;
         this.inicio = inicio;
         this.fim = fim;
-        this.equipamentos = equipamentos;
-        this.status = StatusReserva.ATIVA;
-        this.convidados = convidados;
-        for(Map.Entry<Equipamento, Integer> entry : equipamentos.entrySet()){
-            Equipamento equipamento = entry.getKey();
-            int quantidade = entry.getValue();
-            valor += (long) equipamento.getValor();
+        if (equipamentos == null) {
+            this.equipamentos = new HashMap<>();
+        } else {
+            this.equipamentos = equipamentos;
+            this.status = StatusReserva.ATIVA;
+            this.convidados = convidados;
+            for (Map.Entry<Equipamento, Integer> entry : equipamentos.entrySet()) {
+                Equipamento equipamento = entry.getKey();
+                int quantidade = entry.getValue();
+                valor += (long) equipamento.getValor();
+            }
+            valor += (long) local.getValor();
         }
-        valor += (long) local.getValor();
     }
     public Cliente getCliente() {
         return cliente;

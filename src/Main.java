@@ -31,9 +31,12 @@ public class Main {
         Reserva reserva2 = new Reserva(2,30, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now(), LocalDateTime.now().plusDays(2), equipamentosReserva2);
         service.criarReserva(reserva2);
         service.criarReserva(reserva1);
+        Reserva reserva3 = new Reserva(4, 10, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now().plusDays(3), LocalDateTime.now().plusDays(4), null);
+        service.criarReserva(reserva3);
 
         //até aqui eu testei a criação de reservas e o cancelamento
         //implementei o requerimento de reservas de equipamentos dando erro se não tiver quantidade
+        //implementei a reserva de locais sem equipamentos
 
     }
 }
