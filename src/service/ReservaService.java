@@ -19,7 +19,8 @@ public class ReservaService {
            return false;
        }
        for(Reserva reservaExistente : reservas){
-           if(reservaExistente.getLocal().equals(novaReserva.getLocal()) && reservaExistente.estaAtiva() && horariosConflitam(reservaExistente.getInicio(), novaReserva.getInicio(), reservaExistente.getFim(), novaReserva.getFim())){
+           if(reservaExistente.getLocal().equals(novaReserva.getLocal()) && reservaExistente.estaAtiva() && horariosConflitam(reservaExistente.getInicio()
+                   , reservaExistente.getFim(), novaReserva.getInicio(), novaReserva.getFim())){
                System.out.println("local ja reservado");
                return false;
            }
