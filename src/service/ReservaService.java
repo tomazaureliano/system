@@ -1,5 +1,6 @@
 package service;
 import model.Equipamento;
+import model.Funcionario;
 import model.LocalEsportivo;
 import model.Reserva;
 
@@ -33,6 +34,10 @@ public class ReservaService {
 
            }
        }
+       if(novaReserva.getFuncionario().getAutorizacao() == Funcionario.Autorizacao.NAOAUTORIZADO){
+           System.out.println("Funcionario não autorizado");
+           return false;
+       }
         reservas.add(novaReserva);
         System.out.println("Reserva Criada");
         return true;
@@ -44,14 +49,14 @@ public class ReservaService {
         long horasFaltando = Duration.between(agora, reserva.getInicio()).toHours();
 
         if (horasFaltando < HORAS_CANCELAMENTO_LIMITE) {
-            System.out.println("❌ Cancelamento tarde");
+            System.out.println("Cancelamento tarde");
             System.out.println("Aplicando multa...");
             reserva.setValor((reserva.getValor() + horasFaltando));
 
         }
 
         reserva.cancelar();
-        System.out.println("✅ Reserva cancelada com sucesso!");
+        System.out.println("Reserva cancelada com sucesso");
     }
     private boolean horariosConflitam(LocalDateTime inicio1, LocalDateTime fim1,
                                       LocalDateTime inicio2, LocalDateTime fim2) {

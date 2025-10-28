@@ -11,14 +11,17 @@ public class Reserva {
     private LocalDateTime inicio;
     private LocalDateTime fim;
     private StatusReserva status;
+    private Funcionario funcionario;
     int convidados;
     private long valor;
     public enum StatusReserva {
     ATIVA, CANCELADA, FINALIZADA
     }
-    public Reserva(int idReserva, int convidados, Cliente cliente, StatusReserva status, LocalEsportivo local, LocalDateTime inicio, LocalDateTime fim, Map<Equipamento, Integer> equipamentos) {
+    public Reserva(int idReserva, int convidados, Cliente cliente, StatusReserva status, LocalEsportivo local, LocalDateTime inicio, LocalDateTime fim, Map<Equipamento, Integer> equipamentos, Funcionario funcionario) {
         this.idReserva = idReserva;
         this.cliente = cliente;
+        this.convidados = convidados;
+        this.funcionario = funcionario;
         this.status = status;
         this.local = local;
         this.inicio = inicio;
@@ -116,5 +119,11 @@ public class Reserva {
 
     public void setConvidados(int convidados) {
         this.convidados = convidados;
+    }
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 }
