@@ -33,7 +33,7 @@ public class Main {
         Reserva reserva2 = new Reserva(2,30, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now(), LocalDateTime.now().plusDays(2), equipamentosReserva2);
         service.criarReserva(reserva2);
         service.criarReserva(reserva1);
-        Reserva reserva3 = new Reserva(4, 10, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now().plusDays(3), LocalDateTime.now().plusDays(4), null);
+        Reserva reserva3 = new Reserva(4, 40, cliente2, Reserva.StatusReserva.ATIVA, campo, LocalDateTime.now(), LocalDateTime.now().plusDays(4), null);
         service.criarReserva(reserva3);
         relatorioService.listarReservas();
         //até aqui eu testei a criação de reservas e o cancelamento

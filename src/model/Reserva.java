@@ -47,10 +47,16 @@ public class Reserva {
         return equipamentos;
     }
     public String getNomeEquipamentos() {
-        for (Equipamento e : equipamentos.keySet()) {
-            System.out.println(e.getNome());
+        if (equipamentos.isEmpty()) {
+            return " Nenhum equipamento alugado.";
         }
-        return "";
+        StringBuilder nomes = new StringBuilder();
+        for (Map.Entry<Equipamento, Integer> entry : equipamentos.entrySet()) {
+            Equipamento e = entry.getKey();
+            int quantidade = entry.getValue();
+            nomes.append(String.format("\n  - %s (Quantidade: %d)", e.getNome(), quantidade));
+        }
+        return nomes.toString();
     }
     public void setEquipamentos(Map<Equipamento, Integer> equipamentos) {
         this.equipamentos = equipamentos;

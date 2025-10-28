@@ -12,33 +12,32 @@ import java.util.Map;
 public class ReservaService {
     private List<Reserva> reservas = new ArrayList<>();
     private static final long HORAS_CANCELAMENTO_LIMITE = 2;
-    public boolean criarReserva(Reserva novaReserva){
-        for(Reserva reserva : reservas){
-            if(reserva.getLocal().getCondicao() != LocalEsportivo.Condicao.DISPONIVEL ){
-             System.out.println("local já reservado");
-             return false;
-            }
-        }
-        if(novaReserva.getConvidados() > novaReserva.getLocal().getCapacidade()){
-            System.out.println("Convidados excedem capacidade do local");
-        }
-        for (Map.Entry<Equipamento, Integer> entry : novaReserva.getEquipamentos().entrySet()) {
-            Equipamento equipamento = entry.getKey();
-            int quantidadeReservada = entry.getValue();
 
-            if (quantidadeReservada > equipamento.getQuantidade()) {
-                throw new IllegalArgumentException(
-                        "Erro: Tentando reservar " + quantidadeReservada + " unidades de " + equipamento.getNome() + ", mas só há " + equipamento.getQuantidade() + " disponíveis."
-                );
-            }
-        }
+    public boolean criarReserva(Reserva novaReserva) {
+       if(novaReserva.getConvidados() > novaReserva.getLocal().getCapacidade()){
+           System.out.println("Convidados excedem capacidade");
+           return false;
+       }
+       for(Reserva reservaExistente : reservas){
+           if(reservaExistente.getLocal().equals(novaReserva.getLocal()) && reservaExistente.estaAtiva() && horariosConflitam(reservaExistente.getInicio(), novaReserva.getInicio(), reservaExistente.getFim(), novaReserva.getFim())){
+               System.out.println("local ja reservado");
+               return false;
+           }
+       }
+       for(Map.Entry<Equipamento, Integer> entry : novaReserva.getEquipamentos().entrySet()){
+           Equipamento equipamento = entry.getKey();
+           int quantidadeReservada = entry.getValue();
+           if(quantidadeReservada > equipamento.getQuantidade()){
+               throw new IllegalArgumentException("Erro: Tentando reservar" + quantidadeReservada + " unidades de" + equipamento.getNome() + ", mas só há" + equipamento.getQuantidade() + " disponiveis");
+
+           }
+       }
         reservas.add(novaReserva);
         System.out.println("Reserva Criada");
-
-
-
         return true;
+
     }
+
     public void cancelarReserva(Reserva reserva) {
         LocalDateTime agora = LocalDateTime.now();
         long horasFaltando = Duration.between(agora, reserva.getInicio()).toHours();

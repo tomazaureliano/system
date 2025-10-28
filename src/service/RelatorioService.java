@@ -13,12 +13,16 @@ public class RelatorioService {
     public List<Reserva> listarReservas() {
         List<Reserva> reservas = reservaService.getReservas();
         System.out.println("Reservas listado");
-        for(Reserva reserva : reservas){
-            System.out.println(reserva.getIdReserva());
-            System.out.println(reserva.getLocal().getNome());
-            System.out.println(reserva.getLocal().getCondicao());
-            System.out.println(reserva.getNomeEquipamentos());
-
+        if(reservas.isEmpty()) {
+            System.out.println("Nenhuma reserva encontrada");
+        } else {
+        for(Reserva reserva : reservas) {
+            System.out.println("id da reserva: " + reserva.getIdReserva());
+            System.out.println("local da reserva: " + reserva.getLocal().getNome());
+            System.out.println("condicao do local da reserva :" + reserva.getLocal().getCondicao());
+            System.out.println("equipamentos alugados:" + reserva.getNomeEquipamentos());
+            System.out.println("Status da reserva:" + reserva.getStatus());
+        }
         }
 
         return reservas;
